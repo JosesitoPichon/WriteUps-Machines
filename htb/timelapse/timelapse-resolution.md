@@ -1,4 +1,4 @@
-# Resolución maquina tombwatcher
+# Resolución maquina timelapse
 
 **Autor:** PepeMaquina  
 **Fecha:** 04 de octubre de 2025  
