@@ -1,4 +1,4 @@
-# Resolución maquina tombwatcher
+# Resolución maquina cicada
 
 **Autor:** PepeMaquina  
 **Fecha:** 03 de octubre de 2025  
