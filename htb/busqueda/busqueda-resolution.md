@@ -8,7 +8,7 @@
 
 ---
 ## Imagen de la Máquina
-![[busqueda.jpg]]
+![](busqueda.JPG)
 *Imagen: busqueda.JPG*
 
 ## Reconocimiento Inicial
