@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![[linkvortex.jpg]]
+![](linkvortex.JPG))
 *Imagen: Linkvortex.JPG*
 
 ## Reconocimiento Inicial
@@ -49,7 +49,7 @@ whatweb http://linkvortex.htb
 http://linkvortex.htb [200 OK] Apache, Country[RESERVED][ZZ], HTML5, HTTPServer[Apache], IP[10.10.11.47], JQuery[3.5.1], MetaGenerator[Ghost 5.58], Open-Graph-Protocol[website], PoweredBy[Ghost,a], Script[application/ld+json], Title[BitByBit Hardware], X-Powered-By[Express], X-UA-Compatible[IE=edge]
 ~~~
 Con ello se puede ver que tecnologias emplea, un plus que tambien se podría usar es utilizar wappallyzer que es una extensión para igualmente poder ver tecnologías pero de manera visual
-![[linkvortex2.jpg]]
+![](linkvortex2.JPG)
 Se puede ver que utiliza un CMS que es Ghost y su versión 5.58, en mi metodología siempre esta buscar si estas versiones son vulnerables, pero antes siempre dejo corriendo la búsqueda de directorios y la búsqueda de subdominios por si encuentro alguno.
 ### Enumeración dentro de la pagina web
 ~~~ bash
@@ -141,9 +141,9 @@ cat ghost/core/test/regression/api/admin/authentication.test.js | grep 'pass' -A
 <SNIP>
 ~~~
 Por lo que se anotan todas las credenciales y buscando un lugar para iniciar sesion por ghost se encontro "http://linkvoortek.htb/ghost" asi que la idea es probar.
-![[linkvortex3.jpg]]
+![](linkvortex3.JPG)
 Por suerte, una de dichas credenciales, es valida y se puede iniciar sesion.
-![[linkvortex4.jpg]]
+![](linkvortex4.JPG)
 ### CVE-2023-40028
 Ahora que se tiene acceso al CMS, se puede aprovechar el cve que se encontro antes (https://github.com/0xyassine/CVE-2023-40028), al probarlo se puede ver que si funciona y se puede leer archivos del sistema.
 ~~~bash
