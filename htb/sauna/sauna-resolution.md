@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![Main View](sauna.png)
+![Main View](sauna.jpg)
 (sauna.jpg)
 !(sauna.png)
 ![[sauna.jpg]]
