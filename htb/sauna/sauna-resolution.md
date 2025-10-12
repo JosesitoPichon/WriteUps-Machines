@@ -10,9 +10,9 @@
 
 ## Imagen de la Máquina
 ![Main View](sauna.JPG)
-(sauna.jpg)
-!(sauna.png)
-![[sauna.jpg]]
+(sauna.JPG)
+!(sauna.JPG)
+![[sauna.JPG]]
 *Imagen: sauna.JPG*
 
 ## Reconocimiento Inicial
