@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![](sau.JPG)
+![](sau.jpg)
 *Imagen: Sau.JPG*
 
 ## Reconocimiento Inicial
@@ -100,7 +100,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ~~~
 ### Enumeración dentro de la pagina web
 La enumeración de nmap menciono un puerto 55555, al revisar esto en el navegador se ve una aplicación web ya definida con una version establecida "request-baskets Version: 1.2.1 "
-![](sau2.JPG)
+![](sau2.jpg)
 Siempre que veo una versión en alguna aplicación web lo primero que hago es buscar algun cve que ya exista, porque "para que reinventar la rueda si ya existe"
 
 ### CVE-2023-27163
@@ -108,18 +108,18 @@ Al revisar en internet, se encontró una gran variedad de formas para explotar e
 - La primera es la opción facil donde hay un exploit especifica para la maquina (https://github.com/mathias-mrsn/request-baskets-v121-ssrf), bien esta no es la manera intencionada por lo que se pasa a la segunda forma.
 - La segunda es revisar paso a paso como funciona el exploit, siguiendo la guia de un repositorio (https://github.com/J0ey17/Exploit_CVE-2023-27163)
 Siguiendo el paso a paso, lo primero es crear un "basket" en la pagina original.
-![](sau3.JPG)
+![](sau3.jpg)
 Al crear esto, al parecer existe un ssrf en algún lado, revisando las opciones se encontro alguno que puede ser vulnerable, para probar la vulnerabilidad se redirige a mi direccion ip y ver que le llega alguna péticion.
-![](sau4.JPG)
+![](sau4.jpg)
 Primero abriendo un servidor web en mi maquina atacante y redigiendo el acceso al basket, se puede ver mi servidor de descarga, comprobando asi que se tiene un ssrf a la direccion ip que configuramos.
 ~~~ 
 python3 -m http.server 80
 ~~~
-![](sau5.JPG)
+![](sau5.jpg)
 Entonces ahora toca redirigir la a un puerto interno donde se este hosteando una aplicación web interna, lo ideal seria fuzzearlo ya sea con burp suite y la utilidad "intruder" o FUZZ, en esta ocasión estimo los puertos que normalmente se utilizarian como el 80, 443, 8080, 8000.
 Probando con el puerto 80.
-![](sau6.JPG)
-![](sau7.JPG)
+![](sau6.jpg)
+![](sau7.jpg)
 Se puede ver que es una aplicación de Maltrail corriendo como una versión 0.53, como siempre reviso esta versión en internet en busca de alguna vulnerabilidad.
 Se encontró una poc para realizar un RCE (https://github.com/Rubioo02/Maltrail-v0.53-RCE), probando esto en la maquina atacante, se obtiene acceso mediante una reverse shell.
 ~~~
