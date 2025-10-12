@@ -9,6 +9,9 @@
 ---
 
 ## Imagen de la Máquina
+![Main View](sauna.png)
+(sauna.jpg)
+!(sauna.png)
 ![[sauna.jpg]]
 *Imagen: sauna.JPG*
 
