@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![[timelapse.jpg]]
+![](timelapse.jpg)
 *Imagen: timelapse.JPG*
 
 ## Reconocimiento Inicial
