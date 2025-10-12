@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![[cicada.jpg]]
+![[sauna.jpg]]
 *Imagen: sauna.JPG*
 
 ## Reconocimiento Inicial
