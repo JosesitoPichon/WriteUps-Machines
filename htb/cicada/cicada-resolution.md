@@ -9,7 +9,7 @@
 ---
 
 ## Imagen de la Máquina
-![](cicada.JPG)
+![](cicada.jpg)
 *Imagen: cicada.JPG*
 
 ## Reconocimiento Inicial
