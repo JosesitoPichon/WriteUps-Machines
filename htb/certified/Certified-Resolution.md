@@ -1,4 +1,4 @@
-# Resolución maquina voleur
+# Resolución maquina Certified
 
 **Autor:** PepeMaquina  
 **Fecha:** 29 de Diciembre de 2025  
